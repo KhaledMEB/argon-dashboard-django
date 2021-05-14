@@ -14,26 +14,48 @@
         <div class="col-lg-6 col-md-8">
         
           <div class="card bg-secondary shadow border-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-              <div class="text-center">
-                <a href="#" class="btn btn-neutral btn-icon mr-4">
-                  <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
+            {% if success %}
+              <div class="card-header bg-transparent pb-5" style="display: none;">
+                <div class="text-muted text-center mt-2 mb-4"><small>S'inscrire avec</small></div>
+                <div class="text-center">
+                  <a href="#" class="btn btn-neutral btn-icon mr-4">
+                    <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/github.svg"></span>
+                    <span class="btn-inner--text">Github</span>
+                  </a>
+                  <a href="#" class="btn btn-neutral btn-icon">
+                    <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/google.svg"></span>
+                    <span class="btn-inner--text">Google</span>
+                  </a>
+                </div>
               </div>
-            </div>
+              {% else %}
+                <div class="card-header bg-transparent pb-5" style="display: block;">
+                  <div class="text-muted text-center mt-2 mb-4"><small>S'inscrire avec</small></div>
+                  <div class="text-center">
+                    <a href="#" class="btn btn-neutral btn-icon mr-4">
+                      <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/github.svg"></span>
+                      <span class="btn-inner--text">Github</span>
+                    </a>
+                    <a href="#" class="btn btn-neutral btn-icon">
+                      <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/google.svg"></span>
+                      <span class="btn-inner--text">Google</span>
+                    </a>
+                  </div>
+                </div>
+              {% endif %}
+
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
 
                 {% if msg %}
-                  <small>{{ msg | safe }}</small>
+                  {% if success %}
+                    <small class="alert alert-success" role="alert">{{ msg | safe }}</small>
+                  {% else %}
+                    <small class="alert alert-danger" role="alert">{{ msg | safe }}</small>
+                  {% endif %}
+
                 {% else %}
-                  Add your credentials or <a href={% url 'login' %} >authenticate</a> with an existing account.
+                  Ajoutez vos informations ou <a href={% url 'login' %} >authentifiez-vous</a> avec un compte existant.
                 {% endif %}  
               
               </div>
@@ -41,7 +63,7 @@
               {% if success %}
 
                 <p class="text-center">
-                  Please <a href={% url 'login' %} class="text-black text-small">authenticate</a> using the new account.
+                  Veuillez <a href={% url 'login' %} class="text-black text-small">s'authentifier</a> en utilisant le nouveau compte.
                 </p>  
 
               {% else %}
@@ -94,13 +116,13 @@
                       <div class="custom-control custom-control-alternative custom-checkbox">
                         <input class="custom-control-input" id="customCheckRegister" type="checkbox">
                         <label class="custom-control-label" for="customCheckRegister">
-                          <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                          <span class="text-muted">J'accepte la <a href="# !">politique de confidentialité.</a></span>
                         </label>
                       </div>
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary mt-4">Create account</button>
+                    <button type="submit" class="btn btn-primary mt-4">Créer un compte</button>
                   </div>
                 </form>
 
@@ -115,11 +137,12 @@
       <div class="row mt-3">
         <div class="col-3"></div>
         <div class="col-3">
-          <a href="{% url 'login' %}" class="text-light"><small>Login</small></a>
+          <a href="{% url 'login' %}" class="text-light"><small>Connexion</small></a>
         </div>
         <div class="col-3 text-right">
-          <a target="_blank" 
-             href="https://appseed.us" class="text-light"><small>LIVE Support</small></a>
+          <a href="#" class="text-light"><small>Besoin d'aide ?</small></a>
+          <!-- <a target="_blank" 
+             href="https://appseed.us" class="text-light"><small>Besoin d'aide ?</small></a>    -->
         </div>
       </div>
 
