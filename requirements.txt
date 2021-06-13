@@ -11,8 +11,4 @@ gunicorn
 whitenoise
 djongo
 dnspython
-pymongo
-snappy
-gssapi
-srv
-tls
+pymongo[snappy,gssapi,srv,tls]
