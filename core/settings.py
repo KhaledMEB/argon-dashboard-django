@@ -7,7 +7,6 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
-import pymongo
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
