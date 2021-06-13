@@ -11,3 +11,4 @@ gunicorn
 whitenoise
 djongo
 dnspython
+pymongo
