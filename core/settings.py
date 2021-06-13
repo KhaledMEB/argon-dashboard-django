@@ -81,7 +81,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 
-# replace default DATABASES dictionary
 DATABASES = {
     'default': {
         'ENGINE': "djongo",
@@ -91,8 +90,8 @@ DATABASES = {
 # copy connection string provided by atlas only upto dns name 
 # i.e exclude: "<dbname>?retryWrites=true&w=majority"
 # following is my case
-MongoClient.HOST = "mongodb+srv://topcy-client:CV2uos5MuUVw56lf@topcy.zxvcz.mongodb.net/"
-# os.environ['MONGO_CONNECT_STRING']
+MongoClient.HOST = os.environ['MONGO_CONNECT_STRING']
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
