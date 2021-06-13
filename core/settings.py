@@ -7,6 +7,7 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
+import pymongo
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
@@ -71,10 +72,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME'  : 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME'  : 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'topcyDB',
+        'CLIENT': {
+            'host': "mongodb+srv://topcy-client:CV2uos5MuUVw56lf@topcy.zxvcz.mongodb.net/topcyDB?retryWrites=true&w=majority"
+        },   
     }
 }
 
