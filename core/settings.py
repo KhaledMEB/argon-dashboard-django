@@ -7,6 +7,8 @@ import os
 from decouple import config
 from unipath import Path
 import dj_database_url
+from pymongo.mongo_client import MongoClient
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
@@ -78,15 +80,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
+
+# replace default DATABASES dictionary
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'topcyDB',
-        'CLIENT': {
-            'host': "mongodb+srv://topcy-client:CV2uos5MuUVw56lf@topcy.zxvcz.mongodb.net/topcyDB?retryWrites=true&w=majority"
-        },   
+        'ENGINE': "djongo",
+        'NAME': "topcyDB",
     }
 }
+# copy connection string provided by atlas only upto dns name 
+# i.e exclude: "<dbname>?retryWrites=true&w=majority"
+# following is my case
+MongoClient.HOST = os.environ['MONGO_CONNECT_STRING']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
