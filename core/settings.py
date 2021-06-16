@@ -131,7 +131,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(CORE_DIR, 'staticfiles'),
+]
+
+AZURE_ACCOUNT_NAME = 'topcy'
+AZURE_ACCOUNT_KEY = os.environ['AZURE_KEY']
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+AZURE_LOCATION = 'francecentral'
+AZURE_CONTAINER = 'topcy-container'
+
+STATIC_LOCATION = 'static'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+
+STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+DEFAULT_FILE_STORAGE = 'mysite.custom_azure.AzureMediaStorage'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
