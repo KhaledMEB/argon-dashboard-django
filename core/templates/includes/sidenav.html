@@ -32,28 +32,28 @@
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
+              <h6 class="text-overflow m-0">Bonjour!</h6>
             </div>
             <a href="/profile.html" class="dropdown-item">
               <i class="ni ni-single-02"></i>
-              <span>My profile</span>
+              <span>Profil</span>
             </a>
-            <a href="/profile.html" class="dropdown-item">
+            <a href="#" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
+              <span>Paramètres</span>
             </a>
-            <a href="/profile.html" class="dropdown-item">
+            <!-- <a href="/profile.html" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>
               <span>Activity</span>
-            </a>
-            <a href="/profile.html" class="dropdown-item">
+            </a> -->
+            <a href="#" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="{% url 'logout' %}" class="dropdown-item">
               <i class="ni ni-user-run"></i>
-              <span>Logout</span>
+              <span>Déconnexion</span>
             </a>
           </div>
         </li>
@@ -77,7 +77,7 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
+        <!-- <form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
             <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
             <div class="input-group-prepend">
@@ -86,60 +86,64 @@
               </div>
             </div>
           </div>
-        </form>
+        </form> -->
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class=" nav-link {% if 'index' in segment %} active {% endif %}" href="/"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
+            <a class=" nav-link {% if 'recherche' in segment %} active {% endif %}" href="/recherche.html"> <i class="fa fa-search text-primary"></i> Recherche
+              </a>
+            </li>
+          <li class="nav-item">
+          <a class=" nav-link {% if 'index' in segment %} active {% endif %}" href="/"> <i class="ni ni-tv-2 text-green"></i> Dashboard
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link {% if 'icons' in segment %} active {% endif %}" href="/icons.html">
               <i class="ni ni-planet text-blue"></i> Icons
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link {% if 'maps' in segment %} active {% endif %}" href="/maps.html">
               <i class="ni ni-pin-3 text-orange"></i> Maps
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+              <i class="ni ni-single-02 text-yellow"></i> Profil
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if 'tables' in segment %} active {% endif %}" href="/tables.html">
-              <i class="ni ni-bullet-list-67 text-info"></i> Tables
+              <i class="ni ni-bullet-list-67 text-info"></i> Historique
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">
-              <i class="ni ni-user-run text-red"></i> Logout
+              <i class="ni ni-user-run text-red"></i> Déconnexion
             </a>
           </li>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Links</h6>
+        <h6 class="navbar-heading text-muted">Liens</h6>
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
 
           <li class="nav-item">
             <a class="nav-link" target="_blank" 
                href="https://github.com/creativetimofficial/argon-dashboard-django">
-              <i class="ni ni-ui-04"></i> Source Code
+              <i class="ni ni-ui-04"></i> Code Source
             </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" target="_blank"
                href="https://www.creative-tim.com/templates/django">
               <i class="ni ni-spaceship"></i> More Django Apps
             </a>
-          </li>
+          </li> -->
 
         </ul>
       </div>
