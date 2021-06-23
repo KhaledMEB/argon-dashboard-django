@@ -5,8 +5,47 @@
 {% block content %}
 
     <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          
+        </div>
+      </div>
+    </div>
 
     <div class="container-fluid mt--7">
+
+      <div class="row">
+        <div class="col">
+          <div class="card shadow border-0">
+            <form method="POST">
+
+              {% csrf_token %}
+
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  {{ form.search_txt }}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  </div>
+                  {{ form.since_date }}
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary my-4">Go!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
       {% include "includes/footer.html" %}
 
