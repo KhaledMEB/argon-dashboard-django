@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
+# File: admin.py
 from django.contrib import admin
+from .models import Post
 
-# Register your models here.
+admin.site.register(Post)

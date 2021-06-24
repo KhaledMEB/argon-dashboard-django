@@ -141,5 +141,8 @@ STATICFILES_DIRS = [
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'core/static'),
 )
+
+# Primary Key auto field type
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 #############################################################
 #############################################################
