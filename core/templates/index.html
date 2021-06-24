@@ -67,13 +67,12 @@
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-body">
-              <h2>New post</h2>
-              <form method="POST" class="post-form">
+              <!-- <form method="POST" class="post-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>
-              </form>
-              <!-- <form method="POST" id="search-form">
+              </form> -->
+              <form method="POST">
                 {% csrf_token %}
                 <h6 class="heading-small text-muted mb-4">Paramètres de recherche</h6>
                 <div class="pl-lg-4">
@@ -81,7 +80,11 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="product-name">Nom du produit</label>
-                        <input id="product-name" class="form-control form-control-alternative" placeholder="Par exemple: Redmi Note 8" type="text">
+                        <!-- <input id="product-name" class="form-control form-control-alternative" placeholder="Par exemple: Redmi Note 8" type="text"> -->
+                        <div class="input-group input-group-alternative mb-3">
+                          {{ form.produit }}
+                        </div>
+                        <span class="text-danger">{{ form.produit.errors }}</span>
                       </div>
                     </div>
                   </div>
@@ -89,13 +92,21 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="start-date">Date début</label>
-                        <input type="date" id="start-date" class="form-control form-control-alternative" placeholder="">
+                        <!-- <input type="date" id="start-date" class="form-control form-control-alternative" placeholder=""> -->
+                        <div class="input-group input-group-alternative mb-3">
+                          {{ form.start_date }}
+                        </div>
+                        <span class="text-danger">{{ form.start_date.errors }}</span>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="end-date">Date fin</label>
-                        <input type="date" id="end-date" class="form-control form-control-alternative" placeholder="">
+                        <!-- <input type="date" id="end-date" class="form-control form-control-alternative" placeholder=""> -->
+                        <div class="input-group input-group-alternative mb-3">
+                          {{ form.end_date }}
+                        </div>
+                        <span class="text-danger">{{ form.end_date.errors }}</span>
                       </div>
                     </div>
                   </div>
@@ -105,16 +116,19 @@
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label>Termes de recherche</label>
-                    <textarea rows="4" id="search-terms" class="form-control form-control-alternative" placeholder="Les aspects qui vous intéressent le plus à propos du produit">batterie, prix, photos, qualité, support</textarea>
+                    <!-- <textarea rows="4" id="search-terms" class="form-control form-control-alternative" placeholder="Les aspects qui vous intéressent le plus à propos du produit">batterie, prix, photos, qualité, support</textarea> -->
+                    <div class="input-group input-group-alternative mb-3">
+                      {{ form.termes }}
+                    </div>
+                    <span class="text-danger">{{ form.termes.errors }}</span>
                   </div>
                 </div>
-                <button type="submit" onclick="onClick(this)" class="btn btn-primary float-right">Exécuter</button>
-              </form> -->
+                <button type="submit" class="btn btn-primary float-right">Exécuter</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-
       {% include "includes/footer.html" %}
 
     </div>
