@@ -1,8 +1,3 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django.shortcuts import render
 
 # Create your views here.
@@ -14,21 +9,12 @@ from django.http import HttpResponse
 from .forms import CollectDataForm
 
 def collect_data_view(request):
-    form = CollectDataForm(request.POST or None)
+    form = CollectDataForm()
+     return render(request, "/index.html", {"form": form})
+    # if request.method == "POST":
 
-    msg = None
+    #     if form.is_valid():
+    #         search_txt = form.cleaned_data.get("search_txt")
+    #         date_since = form.cleaned_data.get("date_since")   
 
-    if request.method == "POST":
-
-        if form.is_valid():
-            search_txt = form.cleaned_data.get("search_txt")
-            date_since = form.cleaned_data.get("date_since")
-            if user is not None:
-                login(request, user)
-                return redirect("/")
-            else:    
-                msg = search_txt + ' ' + date_since    
-        else:
-            msg = 'Erreur de validation de la requête'    
-
-    return render(request, "/index.html", {"form": form, "msg" : msg})
+    # return render(request, "/index.html", {"form": form})```

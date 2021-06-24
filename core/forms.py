@@ -5,11 +5,20 @@ import datetime #for checking renewal date range.
 
 class CollectDataForm(forms.Form):
     search_txt = forms.CharField(
-        help_text="Entrez le nom du produit cible",
-        required=True)
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Recherche",                
+                "class": "form-control"
+            }
+        ))
 
     date_since = forms.DateField(
-        help_text="Collecter des données depuis")
+        widget=forms.DateInput(
+            attrs={
+                "placeholder" : "Date Since",                
+                "class": "form-control"
+            }
+        ))
 
     def clean_date_since(self):
         data = self.cleaned_data['date_since']

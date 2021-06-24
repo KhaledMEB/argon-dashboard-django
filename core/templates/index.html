@@ -5,11 +5,17 @@
 {% block content %}
 
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">
-          <!-- Card stats -->
-          
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" 
+         style="min-height: 200px; background-image: url(/static/assets/img/theme/robot-cover.png); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white">Bonjour ami</h1>
+            <p class="text-white mt-0 mb-5">Je m'appelle topCy et je suis là pour vous aider à collecter et analyser les opinions à partir des réseaux sociaux. Allez-y, essayez !</p>
+          </div>
         </div>
       </div>
     </div>
@@ -17,32 +23,89 @@
     <div class="container-fluid mt--7">
 
       <div class="row">
-        <div class="col">
-          <div class="card shadow border-0">
-            <form method="POST">
-
-              {% csrf_token %}
-
-              <div class="form-group mb-3">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+        <div class="col-xl-4 order-xl-2">
+          <div class="card bg-secondary shadow">
+            <div class="card-body">
+              <div class="row">
+              </div>
+                <form>
+                  <h6 class="heading-small text-muted mb-4">Plateformes et Langues</h6>
+                  <div class="pl-lg-4">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Plateformes</label>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="twittercheckbox" checked>
+                            <label class="form-check-label" for="twittercheckbox">Twitter</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="redditcheckbox">
+                            <label class="form-check-label" for="redditcheckbox">Reddit</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Langues</label>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name ="langageradiobox" id="frenchbox" value="fr" checked>
+                            <label class="form-check-label" for="frenchbox">Français</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name ="langageradiobox" id="englishbox" value="en">
+                            <label class="form-check-label" for="englishbox">Anglais</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-body">
+              <form>
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Paramètres de recherche</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">Nom du produit</label>
+                        <input id="input-address" class="form-control form-control-alternative" placeholder="iphone X" type="text">
+                      </div>
+                    </div>
                   </div>
-                  {{ form.search_txt }}
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-city">Date début</label>
+                        <input type="date" id="input-city" class="form-control form-control-alternative" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Date fin</label>
+                        <input type="date" id="input-country" class="form-control form-control-alternative" placeholder="">
+                      </div>
+                    </div>
                   </div>
-                  {{ form.since_date }}
                 </div>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Go!</button>
-              </div>
-            </form>
+                <hr class="my-4" />
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">Paramètres avancés</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label>Mots clés</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="Les mots qui vous intéressent le plus à propos du produit">batterie, prix, photos, qualité, support</textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Exécuter</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
