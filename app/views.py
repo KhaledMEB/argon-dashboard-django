@@ -1,4 +1,4 @@
-from scrapping.logics import DataCollecter
+from scrapping.logics import DataCollecter, StorageManager
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -63,7 +63,10 @@ def create_post(request):
             # collect data
             produit = form.cleaned_data['produit']
             start_date = form.cleaned_data['start_date']
-            collect_data(produit, start_date)
+            local_file_name = collect_data(produit, start_date)
+
+            # save the data in azure storage for later use
+            upload_data(local_file_name)
             return redirect('/dashbord.html')
     else:
         form = PostForm()
@@ -74,4 +77,8 @@ def collect_data(search, since):
     lang = 'fr'
     since = since.strftime("%Y-%m-%d")
     dataCollecter = DataCollecter()
-    local_file_name = dataCollecter.collect_tweet(search, since, lang)
+    return dataCollecter.collect_tweet(search, since, lang)
+
+def upload_data(file_path):
+    storageManager = StorageManager()
+    storageManager.uploadData(file_path)
