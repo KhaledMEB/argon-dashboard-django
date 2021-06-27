@@ -1,7 +1,5 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
+from scrapping.logics import DataCollecter
+from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
@@ -60,11 +58,20 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             # post.author = request.user
-            # post.published_date = timezone.now()
             post.save()
+
+            # collect data
+            produit = form.cleaned_data['produit']
+            start_date = form.cleaned_data['start_date']
+            collect_data(produit, start_date)
             return redirect('/dashbord.html')
     else:
         form = PostForm()
     return HttpResponse(render(request, 'index.html', {'form': form}))
-    #return render(request, '/index.html', {'form': form})
 
+def collect_data(search, since):
+
+    lang = 'fr'
+    since = since.strftime("%Y-%m-%d")
+    dataCollecter = DataCollecter()
+    local_file_name = dataCollecter.collect_tweet(search, since, lang)

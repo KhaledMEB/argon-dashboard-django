@@ -24,3 +24,10 @@ package-lock.json
 staticfiles/*
 !staticfiles/.gitkeep 
 .vscode/symbols.json
+
+# scraping folder
+# exclude everything
+./scraping/tweets/*
+
+# exception to the rule
+!./scraping/tweets/.gitkeep 
