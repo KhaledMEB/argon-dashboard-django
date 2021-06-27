@@ -26,8 +26,6 @@ staticfiles/*
 .vscode/symbols.json
 
 # scraping folder
-# exclude everything
-./scraping/tweets/*
 
-# exception to the rule
-!./scraping/tweets/.gitkeep 
+!scrapping/tweets/.gitkeep
+scrapping/tweets/*
