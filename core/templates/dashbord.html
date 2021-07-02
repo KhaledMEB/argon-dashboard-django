@@ -19,7 +19,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Taux d'opinions positives</h5>
-                      <span class="h2 font-weight-bold mb-0">62%</span>
+                      <span class="h2 font-weight-bold mb-0">{{ taux_positif }}%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -39,7 +39,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Taux d'opinions négatives</h5>
-                      <span class="h2 font-weight-bold mb-0">38%</span>
+                      <span class="h2 font-weight-bold mb-0">{{ taux_negatif }}%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -59,7 +59,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Nombre total des opinions</h5>
-                      <span class="h2 font-weight-bold mb-0">112k</span>
+                      <span class="h2 font-weight-bold mb-0">{{ nombre_document }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -79,7 +79,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Nombre de sujets extraits</h5>
-                      <span class="h2 font-weight-bold mb-0">13</span>
+                      <span class="h2 font-weight-bold mb-0">{{ nombre_sujet }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -168,7 +168,7 @@
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center table-flush">
+              <table class="table align-items-center table-flush table-hover">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Sujet</th>
@@ -178,6 +178,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% if data %} 
+                    {% for d in data %}
+                    <tr>
+                      <th scope="row">
+                        {{ d.Topic }}
+                      </th>
+                      <td>
+                        {{ d.Number_of_Documents }}
+                      </td>
+                      <td>
+                        {{ d.Topic_Contribution }}%
+                      </td>
+                      <td>
+                        <i class="fas fa-arrow-up text-success mr-3"></i> {{ d.Client_Satisfaction }}%
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+                <!-- <tbody>
                   <tr>
                     <th scope="row">
                       /argon/
@@ -248,7 +268,7 @@
                       <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
                     </td>
                   </tr>
-                </tbody>
+                </tbody> -->
               </table>
             </div>
           </div>
