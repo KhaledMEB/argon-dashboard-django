@@ -1,6 +1,7 @@
 import json
 
 from scrapping.logics import DataCollecter, StorageManager
+from scrapping.topicmodeling import TopicModeler
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -79,8 +80,11 @@ def create_post(request):
             start_date = form.cleaned_data['start_date']
             local_file_name = collect_data(produit, start_date)
 
+            # get the topics 
+            get_topics(local_file_name)
+
             # save the data in azure storage for later use
-            upload_data(local_file_name)
+            #upload_data(local_file_name)
             return redirect('/dashbord.html')
     else:
         form = PostForm()
@@ -96,3 +100,7 @@ def collect_data(search, since):
 def upload_data(file_path):
     storageManager = StorageManager()
     storageManager.uploadData(file_path)
+
+def get_topics(file_path):
+    topicModeler = TopicModeler()
+    topicModeler.get_topics(file_path)
