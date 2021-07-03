@@ -2,6 +2,7 @@ import json
 
 from scrapping.logics import DataCollecter, StorageManager
 from scrapping.topicmodeling import TopicModeler
+from scrapping.aggregation import Aggregator
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -80,8 +81,14 @@ def create_post(request):
             start_date = form.cleaned_data['start_date']
             local_file_name = collect_data(produit, start_date)
 
+            # testing
+            #local_file_name = 'iphone 12-fr-2021-07-03.json'
+
             # get the topics 
             get_topics(local_file_name)
+
+            # get sentiments and aggregate
+            aggregate(local_file_name)
 
             # save the data in azure storage for later use
             #upload_data(local_file_name)
@@ -104,3 +111,7 @@ def upload_data(file_path):
 def get_topics(file_path):
     topicModeler = TopicModeler()
     topicModeler.get_topics(file_path)
+
+def aggregate(file_path):
+    aggregator = Aggregator()
+    aggregator.aggregate_topics_sentiments(file_path)

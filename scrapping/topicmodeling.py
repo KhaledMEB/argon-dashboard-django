@@ -16,7 +16,7 @@ from gensim.models import LdaMulticore, CoherenceModel
 
 class TopicModeler:
     def __init__(self):
-        #demoji.download_codes()
+        demoji.download_codes()
         pass
     
     def get_topics(self, data_file_path):

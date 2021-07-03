@@ -39,3 +39,13 @@ class StorageManager:
         local_directory = './scrapping/tweets/'
         with open(local_directory + local_file_name, "rb") as data:
             blob_client.upload_blob(data)
+
+    def downloadModel(self, file_name='gru_model_binary.h5'):
+        blob_service_client = BlobServiceClient.from_connection_string(self.connect_str)
+        container_name = 'models-container'
+        # Create a blob client using the local file name as the name for the blob
+        blob_client = blob_service_client.get_blob_client(container=container_name, blob=file_name)
+
+        local_directory = './scrapping/outputs/'
+        with open(local_directory + file_name, "wb") as download_file:
+            download_file.write(blob_client.download_blob().readall())
