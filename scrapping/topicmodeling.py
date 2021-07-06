@@ -98,7 +98,10 @@ class TopicModeler:
 
         dict_df = pd.DataFrame.from_dict(dict_corpus, orient='index', columns=['freq'])
 
-        threshold = dict_df.sort_values('freq', ascending=False).iloc[9].values[0]
+        if(len(dict_df) > 30):
+            threshold = dict_df.sort_values('freq', ascending=False).iloc[9].values[0]
+        else:
+            threshold = dict_df.sort_values('freq', ascending=False).iloc[3].values[0]
         extension = dict_df[dict_df.freq>threshold].index.tolist()
 
         extension = [word for word in extension if word not in keywords]
