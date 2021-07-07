@@ -88,10 +88,10 @@ def create_post(request):
             # collect data
             produit = form.cleaned_data['produit']
             start_date = form.cleaned_data['start_date']
-            local_file_name = collect_data(produit, start_date)
+            #local_file_name = collect_data(produit, start_date)
 
             # testing
-            #local_file_name = 'iphone 12-fr-2021-07-03.json'
+            local_file_name = 'iphone 12-fr-2021-07-03.json'
 
             # get the topics 
             get_topics(local_file_name)

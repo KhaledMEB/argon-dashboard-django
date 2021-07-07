@@ -20,7 +20,7 @@ class Aggregator:
         pass
 
     def aggregate_topics_sentiments(self, data_file_path):
-    
+        print('Loading the sentiment analysis model ....')
         try:
             gru_model = keras.models.load_model('./scrapping/outputs/gru_model_binary.h5')
         except FileNotFoundError:
@@ -30,7 +30,7 @@ class Aggregator:
 
         # load the lda Target Model
         lda_model = pickle.load(open("./scrapping/outputs/ldamodel.pkl", "rb"))
-
+        print('Loading the sentiment analysis model .... OK')
         # load the corpus and the words dictionnary
 
         with open("./scrapping/outputs/corpus.txt", "rb") as fp:
@@ -99,6 +99,7 @@ class Aggregator:
 
     # supprimer les tweets inutiles (publicité, concours ..)
 
+        print('Classifying documents sentiments....')
         with open('./scrapping/inputs/ads_words.txt', encoding='utf-8') as f:
             ads_words = f.read().splitlines()
 
@@ -128,7 +129,9 @@ class Aggregator:
         df_senti = pd.DataFrame(index = unique, data=counts, columns=['Total'])
         df_senti['Pourcentage %'] = round((df_senti.Total / len(sentiments)) * 100)
         df_senti.to_pickle('./scrapping/outputs/sentiment_global.pkl')
+        print('Classifying documents sentiments....OK')
 
+        print('Aggregating topics & sentiments....')
         df_agg = corpus_topic_df
         df_agg['sentiment'] = sentiments
 
@@ -142,7 +145,7 @@ class Aggregator:
         # SAVE THE TOPICS FILE
         #json_records = topics_dist.reset_index().to_json(orient ='records')
         topics_dist.to_pickle('./scrapping/outputs/topics_dist.pkl')
-
+        print('Aggregating topics & sentiments....OK')
 
 def normalize_texts(texts):
     NON_ALPHANUM = re.compile(r'[\W]')

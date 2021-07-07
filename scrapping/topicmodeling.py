@@ -20,8 +20,11 @@ class TopicModeler:
         pass
     
     def get_topics(self, data_file_path):
+        print('Loading the collected data ....')
         data_folder = 'scrapping/tweets/'
         df = pd.read_json(data_folder + data_file_path, lines=True)
+        print('Loading the collected data .... OK')
+        print('Cleaning the data ....')
         # filtrerer les données
         # remove duplicates 
         # 840 tweets had been droped
@@ -124,6 +127,8 @@ class TopicModeler:
         with open("./scrapping/outputs/corpus.txt", "wb") as fp:
             pickle.dump(corpus, fp)
 
+        print('Cleaning the data .... OK')
+        print('Topic Modeling ....')
         # building the model
 
         num_topics = list(range(2, 30, 2)[1:])
@@ -182,6 +187,7 @@ class TopicModeler:
 
         ldamodel = LDA_models[ideal_topic_num]
         pickle.dump(ldamodel, open("./scrapping/outputs/ldamodel.pkl", "wb"))
+        print('Topic Modeling .... OK')
 
 
 class MLStripper(HTMLParser):
