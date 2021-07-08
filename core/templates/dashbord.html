@@ -134,84 +134,16 @@
                         {{ d.Topic_Contribution }}%
                       </td>
                       <td>
-                        <i class="fas fa-arrow-up text-success mr-3"></i> {{ d.Client_Satisfaction }}%
+                        {% if d.Client_Satisfaction > 50 %}
+                          <i class="fas fa-arrow-up text-success mr-3"></i> {{ d.Client_Satisfaction }}%
+                        {% else %}
+                          <i class="fas fa-arrow-down text-danger mr-3"></i> {{ d.Client_Satisfaction }}%
+                        {% endif %}
                       </td>
                     </tr>
                     {% endfor %}
                   {% endif %}
                 </tbody>
-                <!-- <tbody>
-                  <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
-                    <td>
-                      4,569
-                    </td>
-                    <td>
-                      340
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/index.html
-                    </th>
-                    <td>
-                      3,985
-                    </td>
-                    <td>
-                      319
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/charts.html
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/tables.html
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/profile.html
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                </tbody> -->
               </table>
             </div>
           </div>
@@ -235,22 +167,24 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% if keywords %} 
+                    {% for kw in keywords %}
                   <tr>
                     <th scope="row">
-                      Facebook
+                      {{ kw.word }}
                     </th>
                     <td>
                       <div class="d-flex align-items-center">
-                        <span class="mr-2">60%</span>
+                        <span class="mr-2">{{ kw.contrib }}%</span>
                         <div>
                           <div class="progress">
-                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="{{ kw.contrib }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ kw.contrib }}%;"></div>
                           </div>
                         </div>
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <th scope="row">
                       Facebook
                     </th>
@@ -309,7 +243,9 @@
                         </div>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
+                  {% endfor %}
+                {% endif %}
                 </tbody>
               </table>
             </div>
